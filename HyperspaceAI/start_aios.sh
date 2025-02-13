@@ -125,7 +125,7 @@ hive_login() {
 # Function to run Hive inference
 run_hive_infer() {
 	log_message "${BLUE}Running Hive inference...${RESET}"
-	retry docker exec -i aios-container /app/aios-cli hive infer --model hf:TheBloke/Mistral-7B-Instruct-v0.1-GGUF:mistral-7b-instruct-v0.1.Q4_K_S.gguf --prompt "Explain what a server is in simple terms." || handle_error "Hive inference task failed."
+	retry docker exec -i aios-container /app/aios-cli hive infer --model hf:TheBloke/phi-2-dpo-GGUF:phi-2-dpo.Q4_K_M.gguf --prompt "Explain what a server is in simple terms." || handle_error "Hive inference task failed."
 	log_message "${GREEN}Hive inference task completed successfully.${RESET}"
 }
 
