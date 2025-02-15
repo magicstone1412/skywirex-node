@@ -103,13 +103,13 @@ check_daemon_status() {
 # Function to install local model
 install_local_model() {
 	log_message "${BLUE}Installing local model...${RESET}"
-	docker exec -i aios-container /app/aios-cli models add hf:second-state/Qwen1.5-1.8B-Chat-GGUF:Qwen1.5-1.8B-Chat-Q4_K_M.gguf || handle_error "Failed to install local model."
+	docker exec -i aios-container /app/aios-cli models add hf:TheBloke/Mistral-7B-Instruct-v0.1-GGUF:mistral-7b-instruct-v0.1.Q4_K_S.gguf || handle_error "Failed to install local model."
 }
 
 # Function to run inference
 run_infer() {
 	log_message "${BLUE}Running inference...${RESET}"
-	retry docker exec -i aios-container /app/aios-cli infer --model hf:second-state/Qwen1.5-1.8B-Chat-GGUF:Qwen1.5-1.8B-Chat-Q4_K_M.gguf --prompt "What is 'Artificial Intelligence'?" || handle_error "Inference task failed."
+	retry docker exec -i aios-container /app/aios-cli infer --model hf:TheBloke/Mistral-7B-Instruct-v0.1-GGUF:mistral-7b-instruct-v0.1.Q4_K_S.gguf --prompt "What is 'Artificial Intelligence'?" || handle_error "Inference task failed."
 	log_message "${GREEN}Inference task completed successfully.${RESET}"
 }
 
@@ -125,7 +125,7 @@ hive_login() {
 # Function to run Hive inference
 run_hive_infer() {
 	log_message "${BLUE}Running Hive inference...${RESET}"
-	retry docker exec -i aios-container /app/aios-cli hive infer --model hf:second-state/Qwen1.5-1.8B-Chat-GGUF:Qwen1.5-1.8B-Chat-Q4_K_M.gguf --prompt "Explain what a server is in simple terms." || handle_error "Hive inference task failed."
+	retry docker exec -i aios-container /app/aios-cli hive infer --model hf:TheBloke/Mistral-7B-Instruct-v0.1-GGUF:mistral-7b-instruct-v0.1.Q4_K_S.gguf --prompt "Explain what a server is in simple terms." || handle_error "Hive inference task failed."
 	log_message "${GREEN}Hive inference task completed successfully.${RESET}"
 }
 
